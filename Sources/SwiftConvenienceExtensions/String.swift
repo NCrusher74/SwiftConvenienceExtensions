@@ -30,7 +30,7 @@ extension String: DataConvertible {
     }
     
     /// Divides the string separated by a semicolon character (`"; "`) into a string array.
-    public var arrayValue: [String] {
+    public var toArray: [String] {
         return self.components(separatedBy: "; ")
     }
 }

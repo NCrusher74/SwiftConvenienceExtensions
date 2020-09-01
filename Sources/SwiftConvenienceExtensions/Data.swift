@@ -3,13 +3,13 @@ import Foundation
 extension Data {
     // MARK: - Int conversion
     /// Converts `Data` instance to `Int`, assuming big endianness
-    public var intValue: Int {
+    public var toInt: Int {
         let int = Int(data: self)
         return Int(bigEndian: int)
     }
 
     /// Converts `Data` instance to `Int`
-    public var intValueLittleEndian: Int {
+    var intValueLittleEndian: Int {
         let int = Int(data: self)
         return Int(littleEndian: int)
     }
@@ -20,8 +20,8 @@ extension Data {
         return Int64(bigEndian: int)
     }
     
-    /// Converts `Data` instance to `In64`
-    public var int64LittleEndian: Int64 {
+    /// Converts `Data` instance to `Int64`
+    var int64LittleEndian: Int64 {
         let int = Int64(data: self)
         return Int64(littleEndian: int)
     }
@@ -33,7 +33,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `Int32`
-    public var int32LittleEndian: Int32 {
+    var int32LittleEndian: Int32 {
         let int = Int32(data: self)
         return Int32(littleEndian: int)
     }
@@ -45,7 +45,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `Int16`
-    public var int16LittleEndian: Int16 {
+    var int16LittleEndian: Int16 {
         let int = Int16(data: self)
         return Int16(littleEndian: int)
     }
@@ -57,7 +57,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `Int8`
-    public var int8LittleEndian: Int8 {
+    var int8LittleEndian: Int8 {
         let int = Int8(data: self)
         return Int8(littleEndian: int)
     }
@@ -69,7 +69,7 @@ extension Data {
     }
 
     /// Converts `Data` instance to `UInt64`
-    public var uInt64LittleEndian: UInt64 {
+    var uInt64LittleEndian: UInt64 {
         return UInt64(parsing: self, .littleEndian)
     }
     
@@ -79,7 +79,7 @@ extension Data {
     }
 
     /// Converts `Data` instance to `UInt32`
-    public var uInt32LittleEndian: UInt32 {
+    var uInt32LittleEndian: UInt32 {
         return UInt32(parsing: self, .littleEndian)
     }
     
@@ -89,7 +89,7 @@ extension Data {
     }
 
     /// Converts `Data` instance to `UInt16`
-    public var uInt16LittleEndian: UInt16 {
+    var uInt16LittleEndian: UInt16 {
         return UInt16(parsing: self, .littleEndian)
     }
     
@@ -99,13 +99,13 @@ extension Data {
     }
 
     /// Converts `Data` instance to `UInt8`
-    public var uInt8LittleEndian: UInt8 {
+    var uInt8LittleEndian: UInt8 {
         return UInt8(parsing: self, .littleEndian)
     }
 
     // MARK: - String conversion
     /// Converts data to a `utf8`-encoded string
-    public var stringValue: String? {
+    public var stringUtf8: String? {
         return String(data: self)
     }
     
