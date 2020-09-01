@@ -9,4 +9,8 @@ extension Int32: DataConvertible {
     public var toInt: Int {
         return Int(self)
     }
+
+    public var toDouble: Double {
+        return Double(self)
+    }
 }

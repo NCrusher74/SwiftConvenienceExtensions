@@ -30,6 +30,7 @@ extension Data.SubSequence {
         return extractToString(k, encoding: .isoLatin1)
     }
 
+    /// Removes and returns the first *k* bytes from the subsequence as an integer (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
     public mutating func extractToInt(_ k: Int) -> Int {
         switch k {
             case 1:
@@ -45,18 +46,19 @@ extension Data.SubSequence {
         }
     }
 
-    private mutating func extractUIntToInt(_ k: Int) -> Int {
+    /// Removes and returns the first *k* bytes from the subsequence as a double (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
+    public mutating func extractToDouble(_ k: Int) -> Double {
         switch k {
             case 1:
-                return self.extractFirst(1).uInt8.toInt
+                return self.extractFirst(1).int8.toDouble
             case 2:
-                return self.extractFirst(2).uInt16.toInt
+                return self.extractFirst(2).int16.toDouble
             case 4:
-                return self.extractFirst(4).uInt32.toInt
+                return self.extractFirst(4).int32.toDouble
             case 8:
-                return self.extractFirst(8).uInt64.toInt
+                return self.extractFirst(8).int64.toDouble
             default:
-                return self.extractFirst(4).uInt32.toInt
+                return self.extractFirst(4).int32.toDouble
         }
     }
 }

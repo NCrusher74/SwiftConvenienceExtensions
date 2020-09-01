@@ -9,4 +9,8 @@ extension UInt8: DataConvertible {
     public var toInt: Int {
         return Int(self)
     }
+
+    public var toDouble: Double {
+        return Double(self)
+    }
 }
