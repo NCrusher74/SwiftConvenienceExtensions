@@ -6,6 +6,11 @@ extension Int64: DataConvertible {
         return Data(bytes: &int, count: MemoryLayout<Int64>.size)
     }
     
+    public var leData: Data {
+        var int = self.littleEndian
+        return Data(bytes: &int, count: MemoryLayout<Int8>.size)
+    }
+    
     public var toInt: Int {
         return Int(self)
     }

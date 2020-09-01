@@ -3,103 +3,103 @@ import Foundation
 extension Data {
     // MARK: - Int conversion
     /// Converts `Data` instance to `Int`, assuming big endianness
-    public var toInt: Int {
+    public var toIntBE: Int {
         let int = Int(data: self)
         return Int(bigEndian: int)
     }
 
     /// Converts `Data` instance to `Int`
-    var intValueLittleEndian: Int {
+    var toIntLE: Int {
         let int = Int(data: self)
         return Int(littleEndian: int)
     }
 
     /// Converts `Data` instance to `Int64`, assuming big endianness
-    public var int64: Int64 {
+    public var int64BE: Int64 {
         let int = Int64(data: self)
         return Int64(bigEndian: int)
     }
     
     /// Converts `Data` instance to `Int64`
-    var int64LittleEndian: Int64 {
+    var int64LE: Int64 {
         let int = Int64(data: self)
         return Int64(littleEndian: int)
     }
     
     /// Converts `Data` instance to `Int32`, assuming big endianness
-    public var int32: Int32 {
+    public var int32BE: Int32 {
         let int = Int32(data: self)
         return Int32(bigEndian: int)
     }
     
     /// Converts `Data` instance to `Int32`
-    var int32LittleEndian: Int32 {
+    var int32LE: Int32 {
         let int = Int32(data: self)
         return Int32(littleEndian: int)
     }
     
     /// Converts `Data` instance to `Int16`, assuming big endianness
-    public var int16: Int16 {
+    public var int16BE: Int16 {
         let int = Int16(data: self)
         return Int16(bigEndian: int)
     }
     
     /// Converts `Data` instance to `Int16`
-    var int16LittleEndian: Int16 {
+    var int16LE: Int16 {
         let int = Int16(data: self)
         return Int16(littleEndian: int)
     }
     
     /// Converts `Data` instance to `Int8`, assuming big endianness
-    public var int8: Int8 {
+    public var int8BE: Int8 {
         let int = Int8(data: self)
         return Int8(bigEndian: int)
     }
     
     /// Converts `Data` instance to `Int8`
-    var int8LittleEndian: Int8 {
+    var int8LE: Int8 {
         let int = Int8(data: self)
         return Int8(littleEndian: int)
     }
     
     // MARK: - uInt Conversion
     /// Converts `Data` instance to `UInt64`, assuming big endianness
-    public var uInt64: UInt64 {
+    public var uInt64BE: UInt64 {
         return UInt64(parsing: self, .bigEndian)
     }
 
     /// Converts `Data` instance to `UInt64`
-    var uInt64LittleEndian: UInt64 {
+    var uInt64LE: UInt64 {
         return UInt64(parsing: self, .littleEndian)
     }
     
     /// Converts `Data` instance to `UInt32`, assuming big endianness
-    public var uInt32: UInt32 {
+    public var uInt32BE: UInt32 {
         return UInt32(parsing: self, .bigEndian)
     }
 
     /// Converts `Data` instance to `UInt32`
-    var uInt32LittleEndian: UInt32 {
+    var uInt32LE: UInt32 {
         return UInt32(parsing: self, .littleEndian)
     }
     
     /// Converts `Data` instance to `UInt16`, assuming big endianness
-    public var uInt16: UInt16 {
+    public var uInt16BE: UInt16 {
         return UInt16(parsing: self, .bigEndian)
     }
 
     /// Converts `Data` instance to `UInt16`
-    var uInt16LittleEndian: UInt16 {
+    var uInt16LE: UInt16 {
         return UInt16(parsing: self, .littleEndian)
     }
     
     /// Converts `Data` instance to `UInt32`, assuming big endianness
-    public var uInt8: UInt8 {
+    public var uInt8BE: UInt8 {
         return UInt8(parsing: self, .bigEndian)
     }
 
     /// Converts `Data` instance to `UInt8`
-    var uInt8LittleEndian: UInt8 {
+    var uInt8LE: UInt8 {
         return UInt8(parsing: self, .littleEndian)
     }
 
