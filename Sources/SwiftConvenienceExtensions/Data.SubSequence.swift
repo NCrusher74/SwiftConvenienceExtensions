@@ -1,0 +1,58 @@
+import Foundation
+
+extension Data.SubSequence {
+    /// Removes and returns the first *k* bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
+    public mutating func extractFirst(_ k: Int) -> Data.SubSequence {
+        let extraction = self.prefix(k)
+        self = self.dropFirst(k)
+        return extraction
+    }
+    
+    /// Removes the first 8 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `Int64` value, assumes big endianness
+    public mutating func extractToInt64() -> Int64 {
+        let extraction = self.extractFirst(8)
+        return extraction.int64
+    }
+
+    /// Removes the first 8 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `UInt64` value, assumes big endianness
+    public mutating func extractToUInt64() -> UInt64 {
+        let extraction = self.extractFirst(8)
+        return extraction.uInt64
+    }
+
+    /// Removes the first 4 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `Int32` value
+    public mutating func extractToInt32() -> Int32 {
+        let extraction = self.extractFirst(4)
+        return extraction.int32
+    }
+
+    /// Removes the first 8 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `UInt32` value, assumes big endianness
+    public mutating func extractToUInt32() -> UInt32 {
+        let extraction = self.extractFirst(4)
+        return extraction.uInt32
+    }
+
+    /// Removes the first 2 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `Int16` value
+    public mutating func extractToInt16() -> Int16 {
+        let extraction = self.extractFirst(2)
+        return extraction.int16
+    }
+
+    /// Removes the first 8 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `UInt16` value, assumes big endianness
+    public mutating func extractToUInt16() -> UInt16 {
+        let extraction = self.extractFirst(2)
+        return extraction.uInt16
+    }
+
+    /// Removes the first byte from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `Int8` value
+    public mutating func extractToInt8() -> Int8 {
+        let extraction = self.extractFirst(1)
+        return extraction.int8
+    }
+    
+    /// Removes the first 8 bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and returns an `UInt8` value, assumes big endianness
+    public mutating func extractToUInt8() -> UInt8 {
+        let extraction = self.extractFirst(1)
+        return extraction.uInt8
+    }
+}
