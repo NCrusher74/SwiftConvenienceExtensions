@@ -30,35 +30,35 @@ extension Data.SubSequence {
         return extractToString(k, encoding: .isoLatin1)
     }
 
-    /// Removes and returns the first *k* bytes from the subsequence as an integer (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
+    /// Removes and returns the first *k* bytes from the subsequence as an integer (which only mutates the subsequence’s bounds, not the underlying `Data` instance). Assumed big endianness.
     public mutating func extractToInt(_ k: Int) -> Int {
         switch k {
             case 1:
-                return self.extractFirst(1).int8.toInt
+                return self.extractFirst(1).int8BE.toInt
             case 2:
-                return self.extractFirst(2).int16.toInt
+                return self.extractFirst(2).int16BE.toInt
             case 4:
-                return self.extractFirst(4).int32.toInt
+                return self.extractFirst(4).int32BE.toInt
             case 8:
-                return self.extractFirst(8).int64.toInt
+                return self.extractFirst(8).int64BE.toInt
             default:
-                return self.extractFirst(4).int32.toInt
+                return self.extractFirst(4).int32BE.toInt
         }
     }
 
-    /// Removes and returns the first *k* bytes from the subsequence as a double (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
+    /// Removes and returns the first *k* bytes from the subsequence as a double (which only mutates the subsequence’s bounds, not the underlying `Data` instance). Assumes big endianness.
     public mutating func extractToDouble(_ k: Int) -> Double {
         switch k {
             case 1:
-                return self.extractFirst(1).int8.toDouble
+                return self.extractFirst(1).int8BE.toDouble
             case 2:
-                return self.extractFirst(2).int16.toDouble
+                return self.extractFirst(2).int16BE.toDouble
             case 4:
-                return self.extractFirst(4).int32.toDouble
+                return self.extractFirst(4).int32BE.toDouble
             case 8:
-                return self.extractFirst(8).int64.toDouble
+                return self.extractFirst(8).int64BE.toDouble
             default:
-                return self.extractFirst(4).int32.toDouble
+                return self.extractFirst(4).int32BE.toDouble
         }
     }
 }
