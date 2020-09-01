@@ -1,12 +1,12 @@
 import Foundation
 extension UInt8: DataConvertible {
     /// Converts `UInt8` to bigEndian `Data`
-    var beData: Data {
+    public var beData: Data {
         var int = self.bigEndian
         return Data(bytes: &int, count: MemoryLayout<UInt8>.size)
     }
     
-    var toInt: Int {
+    public var toInt: Int {
         return Int(self)
     }
 }

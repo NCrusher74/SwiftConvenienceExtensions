@@ -3,13 +3,13 @@ import Foundation
 extension Data {
     // MARK: - Int conversion
     /// Converts `Data` instance to `Int`, assuming big endianness
-    var intValue: Int {
+    public var intValue: Int {
         let int = Int(data: self)
         return Int(bigEndian: int)
     }
 
     /// Converts `Data` instance to `Int`
-    var intValueLittleEndian: Int {
+    public var intValueLittleEndian: Int {
         let int = Int(data: self)
         return Int(littleEndian: int)
     }
