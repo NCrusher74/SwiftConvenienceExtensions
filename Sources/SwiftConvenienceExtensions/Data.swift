@@ -4,62 +4,54 @@ public extension Data {
     // MARK: - Int conversion
     /// Converts `Data` instance to `Int`, assuming big endianness
     var toIntBE: Int {
-        let int = Int(data: self)
-        return Int(bigEndian: int)
+        let signedInt = self.int64BE
+        return Int(signedInt)
     }
 
     /// Converts `Data` instance to `Int`
     var toIntLE: Int {
-        let int = Int(data: self)
-        return Int(littleEndian: int)
+        let signedInt = self.int64LE
+        return Int(signedInt)
     }
 
     /// Converts `Data` instance to `Int64`, assuming big endianness
     var int64BE: Int64 {
-        let int = Int64(data: self)
-        return Int64(bigEndian: int)
+        return Int64(self.uInt64BE)
     }
     
     /// Converts `Data` instance to `Int64`
     var int64LE: Int64 {
-        let int = Int64(data: self)
-        return Int64(littleEndian: int)
+        return Int64(self.uInt64LE)
     }
     
     /// Converts `Data` instance to `Int32`, assuming big endianness
     var int32BE: Int32 {
-        let int = Int32(data: self)
-        return Int32(bigEndian: int)
+        return Int32(self.uInt32BE)
     }
     
     /// Converts `Data` instance to `Int32`
     var int32LE: Int32 {
-        let int = Int32(data: self)
-        return Int32(littleEndian: int)
+        return Int32(self.uInt32LE)
     }
     
     /// Converts `Data` instance to `Int16`, assuming big endianness
     var int16BE: Int16 {
-        let int = Int16(data: self)
-        return Int16(bigEndian: int)
+        return Int16(self.uInt16BE)
     }
     
     /// Converts `Data` instance to `Int16`
     var int16LE: Int16 {
-        let int = Int16(data: self)
-        return Int16(littleEndian: int)
+        return Int16(self.uInt16LE)
     }
     
     /// Converts `Data` instance to `Int8`, assuming big endianness
     var int8BE: Int8 {
-        let int = Int8(data: self)
-        return Int8(bigEndian: int)
+        return Int8(self.uInt8BE)
     }
     
     /// Converts `Data` instance to `Int8`
     var int8LE: Int8 {
-        let int = Int8(data: self)
-        return Int8(littleEndian: int)
+        return Int8(self.uInt8LE)
     }
     
     // MARK: - uInt Conversion

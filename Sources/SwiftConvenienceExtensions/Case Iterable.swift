@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension CaseIterable where Self: RawRepresentable {
+public extension CaseIterable where Self: RawRepresentable {
     
     static var rawValues: [RawValue] {
         return allCases.map { $0.rawValue }

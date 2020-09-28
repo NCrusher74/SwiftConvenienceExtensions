@@ -1,5 +1,5 @@
 import Foundation
-public extension Int: DataConvertible {
+public extension Int {
     var double: Double {
         return Double(self)
     }

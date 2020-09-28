@@ -9,7 +9,7 @@ public extension Array where Element == String {
     var toData: Data {
         var data = Data()
         for element in self {
-            data.append(element.data)
+            data.append(element.encodedUtf8)
         }
         return data
     }

@@ -1,6 +1,6 @@
 import Foundation
 
-public extension String: DataConvertible {
+public extension String {
     /// Initializes a utf8 string from data
     init?(data: Data) {
         self.init(data: data, encoding: .utf8)

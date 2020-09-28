@@ -37,7 +37,7 @@ public extension UnsignedInteger {
     }    
 }
 
-enum Endianness {
+public enum Endianness {
     case littleEndian
     case bigEndian
 }
