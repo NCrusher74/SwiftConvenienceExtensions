@@ -98,7 +98,7 @@ public extension Data {
     // MARK: - String conversion
     /// Converts data to a `utf8`-encoded string
     var stringUtf8: String? {
-        return String(data: self)
+        return String(data: self, encoding: .utf8)
     }
     
     /// Converts data to an `ascii`-encoded string
@@ -107,7 +107,7 @@ public extension Data {
     }
     
     /// Converts data to an `isoLatin1`-encoded string
-    var stringISO88591: String? {
+    var stringISOLatin1: String? {
         return String(data: self, encoding: .isoLatin1)
     }
     
