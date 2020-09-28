@@ -1,7 +1,7 @@
 import Foundation
-extension URL {
+public extension URL {
     /// Isolates and returns the parent directory of a `URL`
-    public var parentDirectory: URL {
+    var parentDirectory: URL {
         get {
             let parent = self.deletingLastPathComponent()
             return parent
@@ -17,7 +17,7 @@ extension URL {
     }
     
     /// Isolates and returns a filename string from a `URL`
-    public var fileName: String {
+    var fileName: String {
         get {
             let filename = self.deletingPathExtension().lastPathComponent
             return filename

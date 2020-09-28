@@ -1,6 +1,6 @@
 import Foundation
 
-extension UnsignedInteger {
+public extension UnsignedInteger {
     private init<D>(parsingLittleEndian data: D)
         where D: Collection, D.Element == UInt8 {
             assert(

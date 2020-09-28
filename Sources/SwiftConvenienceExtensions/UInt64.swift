@@ -1,6 +1,6 @@
 import Foundation
 
-extension UInt64: DataConvertible {
+public extension UInt64: DataConvertible {
     /// Converts `UInt64` to bigEndian `Data`
     var beData: Data {
         var int = self.bigEndian

@@ -1,6 +1,6 @@
 
 import Foundation
-extension Data {
+public extension Data {
     // MARK: - Int conversion
     /// Converts `Data` instance to `Int`, assuming big endianness
     var toIntBE: Int {

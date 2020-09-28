@@ -1,7 +1,7 @@
 import Foundation
 import Cocoa
 
-extension NSImage {
+public extension NSImage {
     
     /// Converts an `NSImage` to png data
     var pngData: Data {

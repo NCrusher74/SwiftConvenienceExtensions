@@ -3,7 +3,7 @@ import Foundation
 protocol DataConvertible {
 }
 
-extension DataConvertible where Self: ExpressibleByIntegerLiteral {
+public extension DataConvertible where Self: ExpressibleByIntegerLiteral {
     /// Converts data to integer, assuming little endianness
     init(data: Data) {
         var value: Self = 0
@@ -18,7 +18,7 @@ extension DataConvertible where Self: ExpressibleByIntegerLiteral {
     }
 }
 
-extension DataConvertible where Self: ExpressibleByStringLiteral {
+public extension DataConvertible where Self: ExpressibleByStringLiteral {
     /// converts data to string
     init?(data: Data) {
         var string: Self = ""

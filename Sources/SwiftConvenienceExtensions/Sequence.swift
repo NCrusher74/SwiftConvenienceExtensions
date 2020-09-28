@@ -1,6 +1,6 @@
 import Foundation
 
-extension Sequence where Element: BinaryInteger {
+public extension Sequence where Element: BinaryInteger {
     
     /// converts data to a string of hex values for printing and debugging
     func hexadecimal() -> String {

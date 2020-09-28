@@ -1,5 +1,5 @@
 import Foundation
-extension UInt8: DataConvertible {
+public extension UInt8: DataConvertible {
     /// Converts `UInt8` to bigEndian `Data`
     var beData: Data {
         var int = self.bigEndian

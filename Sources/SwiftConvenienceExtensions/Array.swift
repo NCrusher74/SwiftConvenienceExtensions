@@ -1,12 +1,12 @@
 
 import Foundation
-extension Array where Element == String {
+public extension Array where Element == String {
     /// Convenience Extension. Divides string in components separated by `"; "`
-    public var toString: String {
+    var toString: String {
         return self.joined(separator: "; ")
     }
     
-    public var toData: Data {
+    var toData: Data {
         var data = Data()
         for element in self {
             data.append(element.data)
