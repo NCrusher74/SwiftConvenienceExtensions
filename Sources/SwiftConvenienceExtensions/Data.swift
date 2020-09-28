@@ -3,7 +3,7 @@ import Foundation
 extension Data {
     // MARK: - Int conversion
     /// Converts `Data` instance to `Int`, assuming big endianness
-    public var toIntBE: Int {
+    var toIntBE: Int {
         let int = Int(data: self)
         return Int(bigEndian: int)
     }
@@ -15,7 +15,7 @@ extension Data {
     }
 
     /// Converts `Data` instance to `Int64`, assuming big endianness
-    public var int64BE: Int64 {
+    var int64BE: Int64 {
         let int = Int64(data: self)
         return Int64(bigEndian: int)
     }
@@ -27,7 +27,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `Int32`, assuming big endianness
-    public var int32BE: Int32 {
+    var int32BE: Int32 {
         let int = Int32(data: self)
         return Int32(bigEndian: int)
     }
@@ -39,7 +39,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `Int16`, assuming big endianness
-    public var int16BE: Int16 {
+    var int16BE: Int16 {
         let int = Int16(data: self)
         return Int16(bigEndian: int)
     }
@@ -51,7 +51,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `Int8`, assuming big endianness
-    public var int8BE: Int8 {
+    var int8BE: Int8 {
         let int = Int8(data: self)
         return Int8(bigEndian: int)
     }
@@ -64,7 +64,7 @@ extension Data {
     
     // MARK: - uInt Conversion
     /// Converts `Data` instance to `UInt64`, assuming big endianness
-    public var uInt64BE: UInt64 {
+    var uInt64BE: UInt64 {
         return UInt64(parsing: self, .bigEndian)
     }
 
@@ -74,7 +74,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `UInt32`, assuming big endianness
-    public var uInt32BE: UInt32 {
+    var uInt32BE: UInt32 {
         return UInt32(parsing: self, .bigEndian)
     }
 
@@ -84,7 +84,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `UInt16`, assuming big endianness
-    public var uInt16BE: UInt16 {
+    var uInt16BE: UInt16 {
         return UInt16(parsing: self, .bigEndian)
     }
 
@@ -94,7 +94,7 @@ extension Data {
     }
     
     /// Converts `Data` instance to `UInt32`, assuming big endianness
-    public var uInt8BE: UInt8 {
+    var uInt8BE: UInt8 {
         return UInt8(parsing: self, .bigEndian)
     }
 
@@ -105,24 +105,24 @@ extension Data {
 
     // MARK: - String conversion
     /// Converts data to a `utf8`-encoded string
-    public var stringUtf8: String? {
+    var stringUtf8: String? {
         return String(data: self)
     }
     
     /// Converts data to an `ascii`-encoded string
-    public var stringASCII: String? {
+    var stringASCII: String? {
         return String(data: self, encoding: .ascii)
     }
     
     /// Converts data to an `isoLatin1`-encoded string
-    public var stringISO88591: String? {
+    var stringISO88591: String? {
         return String(data: self, encoding: .isoLatin1)
     }
     
     /// Removes and returns a null‐terminated string from the beginning of the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
     ///
     /// If there is no null‐termination, the string will be constructed from the entire subsequence.
-    public mutating func extractNullTerminatedString() -> String {
+    mutating func extractNullTerminatedString() -> String {
         var remainder = self
         search: while let null = remainder.firstIndex(of: 0) {
             remainder = self[null...].dropFirst()

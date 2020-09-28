@@ -4,7 +4,7 @@ import Cocoa
 extension NSImage {
     
     /// Converts an `NSImage` to png data
-    public var pngData: Data {
+    var pngData: Data {
         if let tiff = tiffRepresentation,
             let bitmap = NSBitmapImageRep(data: tiff),
             let data = bitmap.representation(using: .png, properties: [.compressionFactor: 1.0]) {
@@ -17,7 +17,7 @@ extension NSImage {
     }
     
     /// Converts an `NSImage` to jpg data
-    public var jpgData: Data {
+    var jpgData: Data {
         if let tiff = tiffRepresentation,
             let bitmap = NSBitmapImageRep(data: tiff),
             let data = bitmap.representation(using: .jpeg, properties: [.compressionFactor: 1.0]) {

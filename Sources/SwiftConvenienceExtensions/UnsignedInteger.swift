@@ -26,7 +26,7 @@ extension UnsignedInteger {
         return data
     }
     
-    public init<D>(parsing data: D, _ endianness: Endianness)
+    init<D>(parsing data: D, _ endianness: Endianness)
         where D: Collection, D.Element == UInt8 {
             switch endianness {
                 case .bigEndian:
@@ -37,7 +37,7 @@ extension UnsignedInteger {
     }    
 }
 
-public enum Endianness {
+enum Endianness {
     case littleEndian
     case bigEndian
 }

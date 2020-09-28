@@ -2,7 +2,7 @@ import Foundation
 
 extension Data.SubSequence {
     /// Removes and returns the first *k* bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance).
-    public mutating func extractFirst(_ k: Int) -> Data.SubSequence {
+    mutating func extractFirst(_ k: Int) -> Data.SubSequence {
         let extraction = self.prefix(k)
         self = self.dropFirst(k)
         return extraction
@@ -16,22 +16,22 @@ extension Data.SubSequence {
     }
 
     /// Removes and returns the first *k* bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and converts to a utf8-encoded string
-    public mutating func extractToStringUtf8(_ k: Int) -> String? {
+    mutating func extractToStringUtf8(_ k: Int) -> String? {
         return extractToString(k, encoding: .utf8)
     }
 
     /// Removes and returns the first *k* bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and converts to a ascii-encoded string
-    public mutating func extractToStringASCII(_ k: Int) -> String? {
+    mutating func extractToStringASCII(_ k: Int) -> String? {
         return extractToString(k, encoding: .ascii)
     }
 
     /// Removes and returns the first *k* bytes from the subsequence (which only mutates the subsequence’s bounds, not the underlying `Data` instance) and converts to a isoLatin1 string
-    public mutating func extractToStringISOLatin1(_ k: Int) -> String? {
+    mutating func extractToStringISOLatin1(_ k: Int) -> String? {
         return extractToString(k, encoding: .isoLatin1)
     }
 
     /// Removes and returns the first *k* bytes from the subsequence as an integer (which only mutates the subsequence’s bounds, not the underlying `Data` instance). Assumed big endianness.
-    public mutating func extractToInt(_ k: Int) -> Int {
+    mutating func extractToInt(_ k: Int) -> Int {
         switch k {
             case 1:
                 return self.extractFirst(1).int8BE.toInt
@@ -47,7 +47,7 @@ extension Data.SubSequence {
     }
 
     /// Removes and returns the first *k* bytes from the subsequence as a double (which only mutates the subsequence’s bounds, not the underlying `Data` instance). Assumes big endianness.
-    public mutating func extractToDouble(_ k: Int) -> Double {
+    mutating func extractToDouble(_ k: Int) -> Double {
         switch k {
             case 1:
                 return self.extractFirst(1).int8BE.toDouble
