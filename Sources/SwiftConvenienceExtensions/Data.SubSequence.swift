@@ -34,31 +34,31 @@ public extension Data.SubSequence {
     mutating func extractToInt(_ k: Int) -> Int {
         switch k {
             case 1:
-                return self.extractFirst(1).int8BE.toInt
+                return self.extractFirst(1).int8BE.int
             case 2:
-                return self.extractFirst(2).int16BE.toInt
+                return self.extractFirst(2).int16BE.int
             case 4:
-                return self.extractFirst(4).int32BE.toInt
+                return self.extractFirst(4).int32BE.int
             case 8:
-                return self.extractFirst(8).int64BE.toInt
+                return self.extractFirst(8).int64BE.int
             default:
-                return self.extractFirst(4).int32BE.toInt
+                return self.extractFirst(4).int32BE.int
         }
     }
 
-    /// Removes and returns the first *k* bytes from the subsequence as a double (which only mutates the subsequence’s bounds, not the underlying `Data` instance). Assumes big endianness.
+    /// Removes and returns the first *k* bytes from the subsequence as a double (which only mutates the subsequence’s bounds, not the underlying `Data` instance). Assumes big endianness
     mutating func extractToDouble(_ k: Int) -> Double {
         switch k {
             case 1:
-                return self.extractFirst(1).int8BE.toDouble
+                return self.extractFirst(1).int8BE.double
             case 2:
-                return self.extractFirst(2).int16BE.toDouble
+                return self.extractFirst(2).int16BE.double
             case 4:
-                return self.extractFirst(4).int32BE.toDouble
+                return self.extractFirst(4).int32BE.double
             case 8:
-                return self.extractFirst(8).int64BE.toDouble
+                return self.extractFirst(8).int64BE.double
             default:
-                return self.extractFirst(4).int32BE.toDouble
+                return self.extractFirst(4).int32BE.double
         }
     }
 }

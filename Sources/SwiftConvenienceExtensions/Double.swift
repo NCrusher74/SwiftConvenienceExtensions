@@ -39,5 +39,4 @@ public extension Double {
     var uInt8: UInt8 {
         return UInt8(self)
     }
-
 }

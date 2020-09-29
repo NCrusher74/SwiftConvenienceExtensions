@@ -11,11 +11,11 @@ public extension UInt8 {
         return Data(bytes: &int, count: MemoryLayout<Int8>.size)
     }
     
-    var toInt: Int {
+    var int: Int {
         return Int(self)
     }
 
-    var toDouble: Double {
+    var double: Double {
         return Double(self)
     }
 }

@@ -8,14 +8,14 @@ public extension Int16 {
     
     var leData: Data {
         var int = self.littleEndian
-        return Data(bytes: &int, count: MemoryLayout<Int8>.size)
+        return Data(bytes: &int, count: MemoryLayout<Int16>.size)
     }
     
-    var toInt: Int {
+    var int: Int {
         return Int(self)
     }
 
-    var toDouble: Double {
+    var double: Double {
         return Double(self)
     }
 }

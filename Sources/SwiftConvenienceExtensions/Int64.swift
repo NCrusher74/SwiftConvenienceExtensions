@@ -8,14 +8,14 @@ public extension Int64 {
     
     var leData: Data {
         var int = self.littleEndian
-        return Data(bytes: &int, count: MemoryLayout<Int8>.size)
+        return Data(bytes: &int, count: MemoryLayout<Int64>.size)
     }
     
-    var toInt: Int {
+    var int: Int {
         return Int(self)
     }
 
-    var toDouble: Double {
+    var double: Double {
         return Double(self)
     }
 }
