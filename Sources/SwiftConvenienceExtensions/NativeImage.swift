@@ -42,7 +42,7 @@ public typealias NativeImage = UIImage
 public extension UIImage {
     
     var pngData: Data {
-        if let data = UIImagePNGRepresentation(self) {
+        if let data = self.pngData() {
             return data
         } else {
             return Data()
@@ -50,7 +50,7 @@ public extension UIImage {
     }
     
     var jpgData: Data {
-        if let data = UIImageJPEGRepresentation(self, 1.0) {
+        if let data = self.jpegData(compressionQuality: 1.0) {
             return data
         } else {
             return Data()
