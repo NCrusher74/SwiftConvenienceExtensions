@@ -8,7 +8,7 @@
 #if os(macOS)
 import Cocoa
 public typealias NativeImage = NSImage
-extension NSImage {
+public extension NSImage {
     /// Converts an `NSImage` to png data
     var pngData: Data {
         if let tiff = tiffRepresentation,
@@ -39,7 +39,7 @@ extension NSImage {
 #elseif os(iOS)
 import UIKit
 public typealias NativeImage = UIImage
-extension UIImage {
+public extension UIImage {
     
     var pngData: Data {
         if let data = UIImagePNGRepresentation(self) {
