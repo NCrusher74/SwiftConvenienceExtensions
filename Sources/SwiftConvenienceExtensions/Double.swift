@@ -46,7 +46,7 @@ public extension Double {
     }
 }
 
-extension Float {
+public extension Float {
     func decimalPlaces(_ fractionDigits: Int) -> Float {
         let multiplier = pow(10, Float(fractionDigits))
         return Darwin.round(self * multiplier) / multiplier

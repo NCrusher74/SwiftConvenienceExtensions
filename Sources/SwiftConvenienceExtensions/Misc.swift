@@ -7,8 +7,8 @@
 
 // These is a convenience for handling (part of total) type tuple values
 public struct IntIndex: Codable {
-    var index: Int
-    var total: Int?
+    public var index: Int
+    public var total: Int?
 }
 extension IntIndex : Hashable {
     public func hash(into hasher: inout Hasher) {
@@ -22,8 +22,8 @@ extension IntIndex : Hashable {
 }
 
 public struct DoubleIndex: Codable {
-    var index: Double
-    var total: Int?
+    public var index: Double
+    public var total: Int?
 }
 extension DoubleIndex : Hashable {
     public func hash(into hasher: inout Hasher) {
@@ -37,8 +37,8 @@ extension DoubleIndex : Hashable {
 }
 
 public struct Chapter: Codable {
-    var startTime: Int
-    var title: String
+    public var startTime: Int
+    public var title: String
 }
 extension Chapter : Hashable {
     public func hash(into hasher: inout Hasher) {
@@ -49,4 +49,11 @@ extension Chapter : Hashable {
     public static func ==(lhs: Chapter, rhs: Chapter) -> Bool {
         return lhs.startTime == rhs.startTime && lhs.title == rhs.title
     }
+}
+
+public func convertToMilliseconds(h: Int?, m: Int?, s: Int?) -> Int {
+    let h2ms = h ?? 0 * 60 * 60 * 1000
+    let m2ms = m ?? 0 * 60 * 1000
+    let s2ms = s ?? 0 * 1000
+    return h2ms + m2ms + s2ms
 }
