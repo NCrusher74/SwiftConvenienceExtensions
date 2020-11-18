@@ -39,6 +39,18 @@ public struct TableOfContents: Codable {
         }
         return chapterArray
     }
+    
+    public mutating func addChapter(startTime: Int, title: String) {
+        chaptersDictionary[startTime] = title
+    }
+    
+    public mutating func removeChapter(startTime: Int) {
+        chaptersDictionary[startTime] = nil
+    }
+    
+    public mutating func removeAllChapters() {
+        chaptersDictionary = [:]
+    }
 }
 
 extension TableOfContents.Chapter : Hashable {
