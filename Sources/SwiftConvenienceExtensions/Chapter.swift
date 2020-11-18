@@ -7,10 +7,10 @@
 
 import Foundation
 
-public struct TableOfContents: Codable {
+public struct TableOfContents {
     var chaptersDictionary: [Int: String]
     
-    public struct Chapter: Codable {
+    public struct Chapter {
         public var startTime: Int
         public var title: String
         
@@ -53,7 +53,7 @@ public struct TableOfContents: Codable {
     }
 }
 
-extension TableOfContents.Chapter : Hashable {
+extension TableOfContents.Chapter : Hashable, Codable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(startTime)
         hasher.combine(title)
