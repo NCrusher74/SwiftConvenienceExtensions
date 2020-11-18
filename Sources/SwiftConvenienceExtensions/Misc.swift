@@ -6,11 +6,17 @@
 //
 
 // These is a convenience for handling (part of total) type tuple values
-public struct IntIndex: Codable {
+public struct IntIndex {
     public var index: Int
     public var total: Int?
+    
+//    init(index: Int, total: Int?) {
+//        self.index = index
+//        self.total = total
+//    }
 }
-extension IntIndex : Hashable {
+
+extension IntIndex : Hashable, Codable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(index)
         hasher.combine(total)
@@ -21,11 +27,16 @@ extension IntIndex : Hashable {
     }
 }
 
-public struct DoubleIndex: Codable {
+public struct DoubleIndex {
     public var index: Double
     public var total: Int?
+
+//    init(index: Double, total: Int?) {
+//        self.index = index
+//        self.total = total
+//    }
 }
-extension DoubleIndex : Hashable {
+extension DoubleIndex : Hashable, Codable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(index)
         hasher.combine(total)
