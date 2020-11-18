@@ -44,12 +44,7 @@ extension TableOfContents.Chapter : Hashable {
     
     public static func ==(lhs: TableOfContents.Chapter, rhs: TableOfContents.Chapter) -> Bool {
         return lhs.startTime == rhs.startTime && lhs.title == rhs.title
-    }
-    
-    public init(hrs: Int?, mins: Int?, secs: Int?, title: String) {
-        self.startTime = convertToMilliseconds(h: hrs, m: mins, s: secs)
-        self.title = title
-    }
+    }    
 }
 
 public func convertToMilliseconds(h: Int?, m: Int?, s: Int?) -> Int {
