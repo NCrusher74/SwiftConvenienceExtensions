@@ -15,7 +15,7 @@ public struct TableOfContents: Codable {
         public var title: String
     }
     
-    init(_ chapters: [Chapter]) {
+    public init(_ chapters: [Chapter]) {
         var chapterDict: [Int: String] = [:]
         for chapter in chapters {
             chapterDict[chapter.startTime] = chapter.title
