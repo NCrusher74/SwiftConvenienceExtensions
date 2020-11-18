@@ -35,31 +35,3 @@ extension DoubleIndex : Hashable {
         return lhs.index == rhs.index && lhs.total == rhs.total
     }
 }
-
-public struct Chapter: Codable {
-    public var startTime: Int
-    public var title: String
-}
-
-extension Chapter : Hashable {
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(startTime)
-        hasher.combine(title)
-    }
-    
-    public static func ==(lhs: Chapter, rhs: Chapter) -> Bool {
-        return lhs.startTime == rhs.startTime && lhs.title == rhs.title
-    }
-
-    public init(hrs: Int?, mins: Int?, secs: Int?, title: String) {
-        self.startTime = convertToMilliseconds(h: hrs, m: mins, s: secs)
-        self.title = title
-    }
-}
-
-public func convertToMilliseconds(h: Int?, m: Int?, s: Int?) -> Int {
-    let h2ms = h ?? 0 * 60 * 60 * 1000
-    let m2ms = m ?? 0 * 60 * 1000
-    let s2ms = s ?? 0 * 1000
-    return h2ms + m2ms + s2ms
-}
