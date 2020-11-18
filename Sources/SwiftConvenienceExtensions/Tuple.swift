@@ -10,7 +10,7 @@ public struct IntIndex {
     public var index: Int
     public var total: Int?
     
-    init(index: Int, total: Int?) {
+    public init(index: Int, total: Int?) {
         self.index = index
         self.total = total
     }
@@ -31,7 +31,7 @@ public struct DblIndex {
     public var index: Double
     public var total: Int?
 
-    init(index: Double, total: Int?) {
+    public init(index: Double, total: Int?) {
         self.index = index
         self.total = total
     }
