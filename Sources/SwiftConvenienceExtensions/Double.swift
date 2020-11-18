@@ -39,4 +39,16 @@ public extension Double {
     var uInt8: UInt8 {
         return UInt8(self)
     }
+    
+    func decimalPlaces(_ fractionDigits: Int) -> Double {
+        let multiplier = pow(10, Double(fractionDigits))
+        return Darwin.round(self * multiplier) / multiplier
+    }
+}
+
+extension Float {
+    func decimalPlaces(_ fractionDigits: Int) -> Float {
+        let multiplier = pow(10, Float(fractionDigits))
+        return Darwin.round(self * multiplier) / multiplier
+    }
 }
