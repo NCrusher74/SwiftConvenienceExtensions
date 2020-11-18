@@ -13,6 +13,11 @@ public struct TableOfContents: Codable {
     public struct Chapter: Codable {
         public var startTime: Int
         public var title: String
+        
+        public init(startTime: Int, title: String) {
+            self.startTime = startTime
+            self.title = title
+        }
     }
     
     public init(_ chapters: [Chapter]) {
