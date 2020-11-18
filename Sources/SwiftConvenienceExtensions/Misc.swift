@@ -40,6 +40,7 @@ public struct Chapter: Codable {
     public var startTime: Int
     public var title: String
 }
+
 extension Chapter : Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(startTime)
@@ -48,6 +49,11 @@ extension Chapter : Hashable {
     
     public static func ==(lhs: Chapter, rhs: Chapter) -> Bool {
         return lhs.startTime == rhs.startTime && lhs.title == rhs.title
+    }
+
+    public init(hrs: Int?, mins: Int?, secs: Int?, title: String) {
+        self.startTime = convertToMilliseconds(h: hrs, m: mins, s: secs)
+        self.title = title
     }
 }
 
