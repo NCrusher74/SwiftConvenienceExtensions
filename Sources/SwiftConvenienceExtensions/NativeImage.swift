@@ -10,7 +10,7 @@ import Cocoa
 public typealias NativeImage = NSImage
 public extension NSImage {
     /// Converts an `NSImage` to png data
-    var pngData: Data {
+    public var pngData: Data {
         if let tiff = tiffRepresentation,
            let bitmap = NSBitmapImageRep(data: tiff),
            let data = bitmap.representation(using: .png, properties: [.compressionFactor: 1.0]) {
@@ -23,7 +23,7 @@ public extension NSImage {
     }
     
     /// Converts an `NSImage` to jpg data
-    var jpgData: Data {
+    public var jpgData: Data {
         if let tiff = tiffRepresentation,
            let bitmap = NSBitmapImageRep(data: tiff),
            let data = bitmap.representation(using: .jpeg, properties: [.compressionFactor: 1.0]) {
@@ -41,7 +41,7 @@ import UIKit
 public typealias NativeImage = UIImage
 public extension UIImage {
     
-    var pngData: Data {
+    public var pngData: Data {
         if let data = self.pngData() {
             return data
         } else {
@@ -49,7 +49,7 @@ public extension UIImage {
         }
     }
     
-    var jpgData: Data {
+    public var jpgData: Data {
         if let data = self.jpegData(compressionQuality: 1.0) {
             return data
         } else {
