@@ -8,7 +8,7 @@
 import Foundation
 // books.sorted(by: { SortableOptional($0.seriesIndex) < SortableOptional($1.seriesIndex) })
 public struct SortableOptional<T>: Comparable where T: Comparable {
-    var optional: T?
+    public var optional: T?
     
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs.optional, rhs.optional) {
@@ -37,7 +37,7 @@ public struct SortableOptional<T>: Comparable where T: Comparable {
 }
 
 public struct ReversedSortableOptional<T>: Comparable where T: Comparable {
-    var optional: T?
+    public var optional: T?
     
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs.optional, rhs.optional) {
