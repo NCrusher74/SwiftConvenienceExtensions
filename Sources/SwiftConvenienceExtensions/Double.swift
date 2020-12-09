@@ -4,6 +4,21 @@ public extension Double {
         return Int(self)
     }
     
+    var isInt: Bool {
+        let intValue = Int(self)
+        return  Double(intValue) == self
+    }
+    
+    // duration is in milliseconds, convert to HH:MM:SS
+    var durationAsTimeStamp: String {
+        let seconds: TimeInterval = self / 1000
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [ .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .pad ]
+        return formatter.string(from: seconds) ?? ""
+    }
+
     // MARK: - 64 bit
     var int64: Int64 {
         return Int64(self)

@@ -4,6 +4,17 @@ public extension Int {
         return Double(self)
     }
     
+    // startTime is in milliseconds, convert to HH:MM:SS
+    var startTimeAsTimeStamp: String {
+        let double = self.double
+        let seconds: TimeInterval = double / 1000
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [ .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .pad ]
+        return formatter.string(from: seconds) ?? ""
+    }
+
     // MARK: - 64 bit
     /// Converts integer to 64-bit signed integer
     var int64: Int64 {

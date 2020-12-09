@@ -1,6 +1,18 @@
 import Foundation
 
 public extension String {
+    var delimitedArray: [String] {
+        var nameDelimiters = NSCharacterSet.newlines
+        nameDelimiters.formUnion(NSCharacterSet(charactersIn: ",;&") as CharacterSet)
+        return self.components(separatedBy: nameDelimiters)
+    }
+    
+    var delimitedGenre: [String] {
+        var genreDelimiters = NSCharacterSet.newlines
+        genreDelimiters.formUnion(NSCharacterSet(charactersIn: ":|") as CharacterSet)
+        return self.components(separatedBy: genreDelimiters)
+    }
+
     /// Initializes a utf8 string from data
     private init?(data: Data) {
         self.init(data: data, encoding: .utf8)

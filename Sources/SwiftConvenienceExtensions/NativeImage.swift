@@ -58,3 +58,32 @@ public extension UIImage {
     }
 }
 #endif
+
+public extension NativeImage {
+    static func ==(lhs: NativeImage, rhs: NativeImage) -> Bool {
+        return lhs.jpgData == rhs.jpgData
+    }
+    
+    /// Compares an imported image against other images, and if a match is found, returns the UUID of the image.
+    /// - Parameter images: The existing images being compared against
+    /// - Returns: The `UUID` key under which the existing image may be saved
+    func isStored(in images: [UUID : NativeImage]) -> UUID? {
+        for image in images {
+            if self == image.value {
+                return image.key
+            }
+        }
+        return nil
+    }
+    
+    /// Writes an image to local storage
+    /// - Parameters:
+    ///   - directory: The directory into which the image will be saved
+    ///   - id: The `UUID` that will be used as the image's file name
+    func save(directory: URL, id: UUID) throws {
+        let url = directory
+            .appendingPathComponent(id.uuidString)
+            .appendingPathExtension("jpg")
+        try jpgData.write(to: url)
+    }
+}
