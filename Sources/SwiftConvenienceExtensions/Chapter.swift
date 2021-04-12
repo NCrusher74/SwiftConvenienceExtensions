@@ -10,7 +10,11 @@ import Foundation
 public struct TableOfContents {
     var chaptersDictionary: [Int: String]
     
-    public struct Chapter {
+    public struct Chapter: Comparable {
+        public static func < (lhs: TableOfContents.Chapter, rhs: TableOfContents.Chapter) -> Bool {
+            lhs.startTime < rhs.startTime
+        }
+        
         public var startTime: Int
         public var title: String
         
@@ -29,15 +33,7 @@ public struct TableOfContents {
     }
     
     public var chapters: [Chapter] {
-        let sorted = chaptersDictionary.sorted(by: {$0.key < $1.key})
-        var chapterArray: [Chapter] = []
-        for item in sorted {
-            let startTime = item.key
-            let title = item.value
-            let chapter = Chapter(startTime: startTime, title: title)
-            chapterArray.append(chapter)
-        }
-        return chapterArray
+        chaptersDictionary.map({Chapter(startTime: $0.key, title: $0.value)}).sorted()
     }
     
     public mutating func addChapter(startTime: Int, title: String) {
