@@ -34,15 +34,15 @@ public extension Data.SubSequence {
     mutating func extractToInt(_ k: Int) -> Int {
         switch k {
             case 1:
-                return self.extractFirst(1).int8BE.int
+                return self.extractFirst(1).uInt8BE.int
             case 2:
-                return self.extractFirst(2).int16BE.int
+                return self.extractFirst(2).uInt16BE.int
             case 4:
-                return self.extractFirst(4).int32BE.int
+                return self.extractFirst(4).uInt32BE.int
             case 8:
-                return self.extractFirst(8).int64BE.int
+                return self.extractFirst(8).uInt64BE.int
             default:
-                return self.extractFirst(4).int32BE.int
+                return self.extractFirst(4).uInt32BE.int
         }
     }
 
@@ -50,15 +50,15 @@ public extension Data.SubSequence {
     mutating func extractToDouble(_ k: Int) -> Double {
         switch k {
             case 1:
-                return self.extractFirst(1).int8BE.double
+                return self.extractFirst(1).uInt8BE.double
             case 2:
-                return self.extractFirst(2).int16BE.double
+                return self.extractFirst(2).uInt16BE.double
             case 4:
-                return self.extractFirst(4).int32BE.double
+                return self.extractFirst(4).uInt32BE.double
             case 8:
-                return self.extractFirst(8).int64BE.double
+                return self.extractFirst(8).uInt64BE.double
             default:
-                return self.extractFirst(4).int32BE.double
+                return self.extractFirst(4).uInt32BE.double
         }
     }
 }
