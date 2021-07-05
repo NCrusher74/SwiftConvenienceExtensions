@@ -6,13 +6,12 @@ public extension Int {
     
     // startTime is in milliseconds, convert to HH:MM:SS
     var startTimeAsTimeStamp: String {
-        let double = self.double
-        let seconds: TimeInterval = double / 1000
+        let double = Double(self)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
-        formatter.allowedUnits = [ .hour, .minute, .second ]
+        formatter.allowedUnits = [ .hour, .minute, .second, .nanosecond ]
         formatter.zeroFormattingBehavior = [ .pad ]
-        return formatter.string(from: seconds) ?? ""
+        return formatter.string(from: double) ?? ""
     }
 
     // MARK: - 64 bit
