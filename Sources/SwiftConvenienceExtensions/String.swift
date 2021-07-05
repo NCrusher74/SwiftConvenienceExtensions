@@ -84,7 +84,7 @@ public extension String {
 }
 
 extension DefaultStringInterpolation {
-    mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
+    public mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
         appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
     }
 }
