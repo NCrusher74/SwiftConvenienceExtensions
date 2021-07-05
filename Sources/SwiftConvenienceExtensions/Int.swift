@@ -63,7 +63,6 @@ public extension Int {
         let interval: TimeInterval = TimeInterval(self / 1000)
         
         let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .positional
         formatter.allowedUnits = [ .minute, .second ]
         formatter.zeroFormattingBehavior = .pad
         
@@ -74,11 +73,9 @@ public extension Int {
         
         let numFormatter = NumberFormatter()
         numFormatter.maximumFractionDigits = 0
-        numFormatter.maximumIntegerDigits = 2
-        numFormatter.minimumIntegerDigits = 2
         let number = frames as NSNumber
-        let framesFormatted = numFormatter.string(from: number)
+        let framesFormatted = numFormatter.string(from: number) ?? "00"
         
-        return "\(mmssFormatted):\(framesFormatted ?? "00")"
+        return "\(mmssFormatted):\(framesFormatted)"
     }
 }
