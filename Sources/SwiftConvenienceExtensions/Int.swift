@@ -9,7 +9,7 @@ public extension Int {
         let double = Double(self)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
-        formatter.allowedUnits = [ .hour, .minute, .second, .nanosecond ]
+        formatter.allowedUnits = [ .minute, .second, .nanosecond ]
         formatter.zeroFormattingBehavior = [ .pad ]
         return formatter.string(from: double) ?? ""
     }
