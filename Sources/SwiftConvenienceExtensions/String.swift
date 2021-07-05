@@ -59,4 +59,32 @@ public extension String {
     var toArray: [String] {
         return self.components(separatedBy: "; ")
     }
+
+    func convertCamelToUpperCase() -> String {
+        return self
+            .replacingOccurrences(of: "([A-Z])",
+                                  with: " $1",
+                                  options: .regularExpression,
+                                  range: range(of: self))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .uppercased()
+    }
+    
+    init(withInt int: Int, leadingZeros: Int = 2) {
+        self.init(format: "%0\(leadingZeros)d", int)
+    }
+    
+    func leadingZeros(_ zeros: Int) -> String {
+        if let int = Int(self) {
+            return String(withInt: int, leadingZeros: zeros)
+        }
+        print("Warning: \(self) is not an Int")
+        return ""
+    }
+}
+
+extension DefaultStringInterpolation {
+    mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
+        appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
+    }
 }
