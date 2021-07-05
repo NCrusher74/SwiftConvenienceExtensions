@@ -70,12 +70,7 @@ public extension Int {
         
         let remainder = self % 1000
         let frames = (Double(remainder) * 0.075)
-        
-        let numFormatter = NumberFormatter()
-        numFormatter.maximumFractionDigits = 0
-        let number = frames as NSNumber
-        let framesFormatted = numFormatter.string(from: number) ?? "00"
-        
-        return "\(mmssFormatted):\(framesFormatted)"
+        let framesRounded = Int(frames.decimalPlaces(0))
+        return "\(mmssFormatted):\(framesRounded)"
     }
 }
