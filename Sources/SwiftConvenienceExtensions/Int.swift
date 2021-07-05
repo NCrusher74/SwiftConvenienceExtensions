@@ -4,17 +4,6 @@ public extension Int {
         return Double(self)
     }
     
-    // startTime is in milliseconds, convert to HH:MM:SS
-    var startTimeAsTimeStamp: String {
-        let firstPass = self.quotientAndRemainder(dividingBy: 1000)
-        let milliseconds = firstPass.remainder
-        let fullSeconds = firstPass.quotient
-        let secondPass = fullSeconds.quotientAndRemainder(dividingBy: 60)
-        let seconds = secondPass.remainder
-        let minutes = secondPass.quotient
-        return "\(minutes):\(pad: seconds, toWidth: 2, using: "0"):\(pad: milliseconds, toWidth: 2, using: "0")"
-    }
-
     // MARK: - 64 bit
     /// Converts integer to 64-bit signed integer
     var int64: Int64 {
@@ -58,4 +47,38 @@ public extension Int {
     var uInt8: UInt8 {
         return UInt8(truncatingIfNeeded: self)
     }    
+
+    // duration is in milliseconds, convert to HH:MM:SS
+    var durationAsTimeStamp: String {
+        let seconds: TimeInterval = Double(self) / 1000
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [ .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .pad ]
+        return formatter.string(from: seconds) ?? ""
+    }
+
+    // startTime is in milliseconds, convert to mm:ss:FF
+    var cueTimeStamp: String {
+        let interval: TimeInterval = TimeInterval(self / 1000)
+        
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [ .minute, .second ]
+        formatter.zeroFormattingBehavior = .pad
+        
+        let mmssFormatted = formatter.string(from: interval) ?? ""
+        
+        let remainder = self % 1000
+        let frames = (Double(remainder) * 0.075)
+        
+        let numFormatter = NumberFormatter()
+        numFormatter.maximumFractionDigits = 0
+        numFormatter.maximumIntegerDigits = 2
+        numFormatter.minimumIntegerDigits = 2
+        let number = frames as NSNumber
+        let framesFormatted = numFormatter.string(from: number)
+        
+        return "\(mmssFormatted):\(framesFormatted ?? "00")"
+    }
 }
