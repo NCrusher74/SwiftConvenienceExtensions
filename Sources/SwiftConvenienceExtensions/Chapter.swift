@@ -22,6 +22,10 @@ public struct TableOfContents {
             self.startTime = startTime
             self.title = title
         }
+        
+        public var startingTimeStamp: String {
+            return startTime.timeStampFromMilliseconds
+        }
     }
     
     public init(_ chapters: [Chapter]) {

@@ -49,13 +49,15 @@ public extension Int {
     }    
 
     // duration is in milliseconds, convert to HH:MM:SS
-    var durationAsTimeStamp: String {
+    var timeStampFromMilliseconds: String {
+        let milliseconds = self % 1000
+
         let seconds: TimeInterval = Double(self) / 1000
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
         formatter.allowedUnits = [ .hour, .minute, .second ]
         formatter.zeroFormattingBehavior = [ .pad ]
-        return formatter.string(from: seconds) ?? ""
+        return formatter.string(from: seconds) ?? "00:00:00" + ".\(milliseconds)"
     }
 
     // startTime is in milliseconds, convert to mm:ss:FF
