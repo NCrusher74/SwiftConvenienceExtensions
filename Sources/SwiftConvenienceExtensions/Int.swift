@@ -57,7 +57,12 @@ public extension Int {
         formatter.unitsStyle = .positional
         formatter.allowedUnits = [ .hour, .minute, .second ]
         formatter.zeroFormattingBehavior = [ .pad ]
-        return formatter.string(from: seconds) ?? "00:00:00" + ".\(milliseconds)"
+        
+        if let formatted = formatter.string(from: seconds) {
+            return formatted + ".\(milliseconds)"
+        } else {
+            return "00:00:00.000"
+        }
     }
 
     // startTime is in milliseconds, convert to mm:ss:FF
