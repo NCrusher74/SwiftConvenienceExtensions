@@ -51,8 +51,8 @@ public extension Int {
     // duration is in milliseconds, convert to HH:MM:SS
     var timeStampFromMilliseconds: String {
         let milliseconds = self % 1000
-
-        let seconds: TimeInterval = Double(self) / 1000
+        
+        let seconds: TimeInterval = TimeInterval(self / 1000)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
         formatter.allowedUnits = [ .hour, .minute, .second ]
