@@ -78,6 +78,6 @@ public extension Int {
         let remainder = self % 1000
         let frames = (Double(remainder) * 0.075)
         let framesRounded = Int(frames.decimalPlaces(0))
-        return "\(mmssFormatted):\(framesRounded)"
+        return "\(mmssFormatted):" + "\(framesRounded)".leadingZeros()
     }
 }

@@ -1,4 +1,6 @@
 import Foundation
+fileprivate let badChars = CharacterSet.alphanumerics.inverted
+
 
 public extension String {
     var delimitedArray: [String] {
@@ -74,17 +76,174 @@ public extension String {
         self.init(format: "%0\(leadingZeros)d", int)
     }
     
-    func leadingZeros(_ zeros: Int) -> String {
+    func leadingZeros(_ zeros: Int = 2) -> String {
         if let int = Int(self) {
             return String(withInt: int, leadingZeros: zeros)
         }
         print("Warning: \(self) is not an Int")
         return ""
     }
+
+    private func attemptAAXDate() -> Date? {
+        let calendar = Calendar(identifier: .iso8601)
+        let timeZone = TimeZone(secondsFromGMT: 0) ?? .current
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = calendar
+        dateComponents.timeZone = timeZone
+        
+        let stringComponents: [String] = self.components(separatedBy: "-")
+        
+        guard stringComponents.count == 3 && ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"].contains(stringComponents[1]) else {
+            return nil
+        }
+        
+        if let dayInt = Int(stringComponents[0]) {
+            dateComponents.day = dayInt
+        } else {
+            dateComponents.day = nil
+        }
+        
+        let monthAbbreviated = stringComponents[1]
+        switch monthAbbreviated {
+            case "JAN": dateComponents.month = 01
+            case "FEB": dateComponents.month = 02
+            case "MAR": dateComponents.month = 03
+            case "APR": dateComponents.month = 04
+            case "MAY": dateComponents.month = 05
+            case "JUN": dateComponents.month = 06
+            case "JUL": dateComponents.month = 07
+            case "AUG": dateComponents.month = 08
+            case "SEP": dateComponents.month = 09
+            case "OCT": dateComponents.month = 10
+            case "NOV": dateComponents.month = 11
+            case "DEC": dateComponents.month = 12
+            default: dateComponents.month = nil
+        }
+        
+        if let yearInt = Int(stringComponents[2]) {
+            dateComponents.year = yearInt
+        }
+        
+        if let date = calendar.date(from: dateComponents) {
+            return date
+        } else {
+            return nil
+        }
+    }
+    
+    
+    @available(OSX 10.12, iOS 12.0, *)
+    private func attemptOtherDate() -> Date? {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        isoFormatter.timeZone = TimeZone(secondsFromGMT: 0) ?? .current
+        
+        let formats: [String] = ["d MMM yyyy HH:mm:ss", "yyyy-MM-ddTHH:mm", "yyyy-MM-ddTHH:mm:ssZ", "MM-dd-yyyy HH:mm","yyyy-MM-ddTHH", "MMM d, yyyy", "d MMM yyyy", "yyyy-MM-dd", "MM/dd/yyyy", "dd/MM/yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd-MM-yy", "dd-MM-yyyy", "dd-MMM-yyyy", "dd-MMM-yy", "MM-dd-yyyy", "MMMM yyyy", "yyyy-MM"]
+        let dateFormatters: [DateFormatter] = formats.map { format in
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = format
+            return formatter
+        }
+        
+        if let date = isoFormatter.date(from: self) {
+            return date
+        } else {
+            for format in dateFormatters {
+                if let date = format.date(from: self) {
+                    return date
+                } else {
+                    return nil
+                }
+            }; return nil
+        }
+    }
+    
+    @available(OSX 10.12, iOS 12.0, *)
+    func attemptDateFromYear() -> Date? {
+        guard self.count == 4 else {
+            return nil
+        }
+        
+        let calendar = Calendar(identifier: .iso8601)
+        let timeZone = TimeZone(secondsFromGMT: 0) ?? .current
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = calendar
+        dateComponents.timeZone = timeZone
+        
+        if let int = Int(self) {
+            dateComponents.year = int
+            return calendar.date(from: dateComponents)
+        } else {
+            return nil
+        }
+    }
+    
+    @available(OSX 10.12, iOS 12.0, *)
+    func attemptDateFromString() -> Date? {
+        if let date = attemptAAXDate() {
+            return date
+        } else if let date = attemptDateFromYear() {
+            return date
+        } else if let date = attemptOtherDate() {
+            return date
+        } else {
+            return nil
+        }
+    }
+    
+    private var uppercasingFirst: String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    
+    private var lowercasingFirst: String {
+        return prefix(1).lowercased() + dropFirst()
+    }
+    
+    var camelized: String {
+        guard !isEmpty else {
+            return ""
+        }
+        
+        let parts = self.components(separatedBy: badChars)
+        
+        let first = String(describing: parts.first!).lowercasingFirst
+        let rest = parts.dropFirst().map({String($0).uppercasingFirst})
+        
+        return ([first] + rest).joined(separator: "")
+    }
+    
+    mutating func extractFirst(_ k: Int = 0) -> String {
+        let extraction = self.prefix(k)
+        self = String(self.dropFirst(k))
+        return String(extraction)
+    }
+    
+    func convertCamelCase() -> String {
+        return self
+            .replacingOccurrences(of: "([A-Z])",
+                                  with: " $1",
+                                  options: .regularExpression,
+                                  range: range(of: self))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .uppercasingFirst
+    }
 }
 
-extension DefaultStringInterpolation {
+public extension DefaultStringInterpolation {
     public mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
         appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
     }
 }
+
+public extension StringProtocol {
+    func distance(of element: Element) -> Int? { firstIndex(of: element)?.distance(in: self) }
+    func distance<S: StringProtocol>(of string: S) -> Int? { range(of: string)?.lowerBound.distance(in: self) }
+}
+
+public extension String.Index {
+    func distance<S: StringProtocol>(in string: S) -> Int { string.distance(to: self) }
+}
+
