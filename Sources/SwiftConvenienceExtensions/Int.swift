@@ -73,7 +73,7 @@ public extension Int {
         formatter.allowedUnits = [ .minute, .second ]
         formatter.zeroFormattingBehavior = .pad
         
-        let mmssFormatted = formatter.string(from: interval) ?? ""
+        let mmssFormatted = formatter.string(from: interval) ?? "00:00"
         
         let remainder = self % 1000
         let frames = (Double(remainder) * 0.075)
