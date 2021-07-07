@@ -5,6 +5,8 @@
 //  Created by Nolaine Crusher on 7/6/21.
 //
 
+import Foundation
+
 public extension Collection where Element: Equatable {
     /// Compares the elements in a collection to determine if they are identical
     func allAreEqual() -> Bool {
@@ -25,6 +27,35 @@ public extension Array where Element == String {
         let extraction = self.first!
         self = Array<String>(self.dropFirst())
         return extraction
+    }
+    
+    mutating func interpretTimeStampStrings() -> Int {
+        guard self.count == 3 else {
+            return 0
+        }
+
+        let minutesString = self.extractFirst()
+        let minutes: Int
+        if let int = Int(minutesString)  {
+            minutes = int
+        } else {
+            minutes = 0
+        }
+        
+        let secondsString = self.extractFirst()
+        var seconds = minutes * 60
+        if let int = Int(secondsString) {
+            seconds += int
+        }
+        
+        var milliseconds = seconds * 1000
+        let milliString = self.extractFirst()
+        if let int = Int(milliString) {
+            let millis = Double(int) / 0.075
+            milliseconds += Int(millis)
+        }
+
+        return milliseconds
     }
 }
 
