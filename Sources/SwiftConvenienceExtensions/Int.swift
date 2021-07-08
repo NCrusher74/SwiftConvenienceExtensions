@@ -59,7 +59,7 @@ public extension Int {
         formatter.zeroFormattingBehavior = [ .pad ]
         
         if let formatted = formatter.string(from: seconds) {
-            return formatted + String(withInt: milliseconds, leadingZeros: 3)
+            return "\(formatted)." + String(withInt: milliseconds, leadingZeros: 3)
         } else {
             return "00:00:00.000"
         }
@@ -73,11 +73,11 @@ public extension Int {
         formatter.allowedUnits = [ .minute, .second ]
         formatter.zeroFormattingBehavior = .pad
         
-        let mmssFormatted = formatter.string(from: interval) ?? "00:00"
+        let formatted = formatter.string(from: interval) ?? "00:00"
         
         let remainder = self % 1000
         let frames = (Double(remainder) * 0.075)
         let framesRounded = Int(frames.decimalPlaces(0))
-        return "\(mmssFormatted):" + String(withInt: framesRounded, leadingZeros: 2)
+        return "\(formatted):" + String(withInt: framesRounded, leadingZeros: 2)
     }
 }
