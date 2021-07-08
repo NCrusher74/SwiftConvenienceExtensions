@@ -1,6 +1,21 @@
 import Foundation
 fileprivate let badChars = CharacterSet.alphanumerics.inverted
 
+public extension DefaultStringInterpolation {
+    public mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
+        appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
+    }
+}
+
+public extension StringProtocol {
+    func distance(of element: Element) -> Int? { firstIndex(of: element)?.distance(in: self) }
+    func distance<S: StringProtocol>(of string: S) -> Int? { range(of: string)?.lowerBound.distance(in: self) }
+}
+
+public extension String.Index {
+    func distance<S: StringProtocol>(in string: S) -> Int { string.distance(to: self) }
+}
+
 
 public extension String {
     var delimitedArray: [String] {
@@ -230,20 +245,41 @@ public extension String {
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .uppercasingFirst
     }
-}
-
-public extension DefaultStringInterpolation {
-    public mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
-        appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
+    
+    func millisecondsFromHHMMSSZZZ() -> Int {
+        var components = self.components(separatedBy: ":")
+        guard components.count == 3 else {
+            return 0
+        }
+        
+        let hourString = components.extractFirst()
+        var hours = 0
+        if let int = Int(hourString) {
+            hours = int
+        }
+        
+        let minuteString = components.extractFirst()
+        var minutes = hours * 60
+        if let int = Int(minuteString) {
+            minutes += int
+        }
+        
+        let lastString = components.extractFirst()
+        var secondsParts = lastString.components(separatedBy: ".")
+        let secondsString = secondsParts.extractFirst()
+        
+        var seconds = minutes * 60
+        if let int = Int(secondsString) {
+            seconds += int
+        }
+        
+        var milliseconds = seconds * 1000
+        if let milliString = secondsParts.last {
+            if let int = Int(milliString) {
+                milliseconds += int
+            }
+        }
+        
+        return milliseconds
     }
 }
-
-public extension StringProtocol {
-    func distance(of element: Element) -> Int? { firstIndex(of: element)?.distance(in: self) }
-    func distance<S: StringProtocol>(of string: S) -> Int? { range(of: string)?.lowerBound.distance(in: self) }
-}
-
-public extension String.Index {
-    func distance<S: StringProtocol>(in string: S) -> Int { string.distance(to: self) }
-}
-

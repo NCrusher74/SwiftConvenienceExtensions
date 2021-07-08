@@ -23,7 +23,7 @@ public extension Array where Element == String {
         return extraction
     }
     
-    mutating func interpretTimeStampStrings() -> Int {
+    mutating func millisecondsFromMMSSFF() -> Int {
         guard self.count == 3 else {
             return 0
         }
