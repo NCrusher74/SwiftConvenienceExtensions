@@ -59,7 +59,7 @@ public extension Int {
         formatter.zeroFormattingBehavior = [ .pad ]
         
         if let formatted = formatter.string(from: seconds) {
-            return formatted + ".\(milliseconds)"
+            return formatted + ".\(milliseconds)".leadingZeros(3)
         } else {
             return "00:00:00.000"
         }
