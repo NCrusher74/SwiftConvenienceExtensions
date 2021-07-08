@@ -2,7 +2,7 @@ import Foundation
 fileprivate let badChars = CharacterSet.alphanumerics.inverted
 
 public extension DefaultStringInterpolation {
-    public mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
+    mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
         appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
     }
 }
@@ -217,7 +217,7 @@ public extension String {
         return prefix(1).lowercased() + dropFirst()
     }
     
-    var camelized: String {
+    var camelCased: String {
         guard !isEmpty else {
             return ""
         }
