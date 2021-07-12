@@ -5,6 +5,10 @@ public extension DefaultStringInterpolation {
     mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
         appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
     }
+
+    mutating func appendInterpolation(pad string: String, toWidth width: Int, using paddingCharacter: Character = " ") {
+        appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", string))
+    }
 }
 
 public extension StringProtocol {
