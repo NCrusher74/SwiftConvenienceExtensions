@@ -5,10 +5,6 @@ public extension DefaultStringInterpolation {
     mutating func appendInterpolation(pad value: Int, toWidth width: Int, using paddingCharacter: Character = "0") {
         appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", value))
     }
-
-    mutating func appendInterpolation(pad string: String, toWidth width: Int, using paddingCharacter: Character = " ") {
-        appendInterpolation(String(format: "%\(paddingCharacter)\(width)d", string))
-    }
 }
 
 public extension StringProtocol {
@@ -22,6 +18,14 @@ public extension String.Index {
 
 
 public extension String {
+    mutating func padLeft(_ k: Int, with character: Character = " ") {
+        self = String(repeating: character, count: k) + self
+    }
+
+    mutating func padRight(_ k: Int, with character: Character = " ") {
+        self = self + String(repeating: character, count: k)
+    }
+
     var delimitedArray: [String] {
         var nameDelimiters = NSCharacterSet.newlines
         nameDelimiters.formUnion(NSCharacterSet(charactersIn: ",;&") as CharacterSet)
