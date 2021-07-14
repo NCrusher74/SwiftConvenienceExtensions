@@ -18,12 +18,12 @@ public extension String.Index {
 
 
 public extension String {
-    mutating func padLeft(_ k: Int, with character: Character = " ") {
-        self = String(repeating: character, count: k) + self
+    func padLeft(_ k: Int, with character: Character = " ") -> String {
+        return String(repeating: character, count: k) + self
     }
 
-    mutating func padRight(_ k: Int, with character: Character = " ") {
-        self = self + String(repeating: character, count: k)
+    func padRight(_ k: Int, with character: Character = " ") -> String {
+        return self + String(repeating: character, count: k)
     }
 
     var delimitedArray: [String] {
