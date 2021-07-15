@@ -91,7 +91,6 @@ public extension String {
                                   with: " $1",
                                   options: .regularExpression,
                                   range: range(of: self))
-            .trimmingCharacters(in: .whitespacesAndNewlines)
             .uppercased()
     }
     
@@ -243,16 +242,15 @@ public extension String {
         self = String(extraction)
     }
     
-    mutating func convertedCamelCase() {
-        self = self
+    func convertedCamelCase() -> String {
+        return self
             .replacingOccurrences(of: "([A-Z])",
                                   with: " $1",
                                   options: .regularExpression,
                                   range: range(of: self))
-            .trimmingCharacters(in: .whitespacesAndNewlines)
             .capitalized
     }
-    
+
     func millisecondsFromHHMMSSZZZ() -> Int {
         var components = self.components(separatedBy: ":")
         guard components.count == 3 else {
