@@ -237,8 +237,9 @@ public extension String {
         return ([first] + rest).joined(separator: "")
     }
     
-    func extractFirst(_ k: Int = 0) -> String {
+    mutating func extractFirst(_ k: Int = 0) -> String {
         let extraction = self.prefix(k)
+        self = String(self.dropFirst(k))
         return String(extraction)
     }
     
