@@ -237,9 +237,9 @@ public extension String {
         return ([first] + rest).joined(separator: "")
     }
     
-    mutating func extractFirst(_ k: Int = 0) {
+    func extractFirst(_ k: Int = 0) -> String {
         let extraction = self.prefix(k)
-        self = String(extraction)
+        return String(extraction)
     }
     
     func convertedCamelCase() -> String {
