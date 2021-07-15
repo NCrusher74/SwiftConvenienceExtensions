@@ -238,20 +238,19 @@ public extension String {
         return ([first] + rest).joined(separator: "")
     }
     
-    mutating func extractFirst(_ k: Int = 0) -> String {
+    mutating func extractFirst(_ k: Int = 0) {
         let extraction = self.prefix(k)
-        self = String(self.dropFirst(k))
-        return String(extraction)
+        self = String(extraction)
     }
     
-    func convertCamelCase() -> String {
-        return self
+    mutating func convertedCamelCase() {
+        self = self
             .replacingOccurrences(of: "([A-Z])",
                                   with: " $1",
                                   options: .regularExpression,
                                   range: range(of: self))
             .trimmingCharacters(in: .whitespacesAndNewlines)
-            .uppercasingFirst
+            .capitalized
     }
     
     func millisecondsFromHHMMSSZZZ() -> Int {
