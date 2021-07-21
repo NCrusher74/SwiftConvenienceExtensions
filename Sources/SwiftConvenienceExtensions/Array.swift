@@ -54,12 +54,17 @@ public extension Array where Element == String {
 }
 
 public extension Array where Element == Int {
-    mutating func extractFirst() -> Int {
-        guard !self.isEmpty else {
-            return Int()
-        }
-        let extraction = self.first!
+    mutating func extractFirst() -> Int? {
+        let extraction = self.first
         self = Array<Int>(self.dropFirst())
+        return extraction
+    }
+}
+
+public extension Array where Element == Double {
+    mutating func extractFirst() -> Double? {
+        let extraction = self.first
+        self = Array<Double>(self.dropFirst())
         return extraction
     }
 }
