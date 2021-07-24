@@ -85,15 +85,6 @@ public extension String {
         return self.components(separatedBy: "; ")
     }
 
-    func convertCamelToUpperCase() -> String {
-        return self
-            .replacingOccurrences(of: "([A-Z])",
-                                  with: " $1",
-                                  options: .regularExpression,
-                                  range: range(of: self))
-            .uppercased()
-    }
-    
     init(withInt int: Int, leadingZeros: Int = 2) {
         self.init(format: "%0\(leadingZeros)d", int)
     }
@@ -245,6 +236,7 @@ public extension String {
     
     func convertedCamelCase() -> String {
         return self
+            .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "([A-Z])",
                                   with: " $1",
                                   options: .regularExpression,
@@ -252,6 +244,16 @@ public extension String {
             .capitalized
     }
 
+    func convertCamelToUpperCase() -> String {
+        return self
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "([A-Z])",
+                                  with: " $1",
+                                  options: .regularExpression,
+                                  range: range(of: self))
+            .uppercased()
+    }
+    
     func millisecondsFromHHMMSSZZZ() -> Int {
         var components = self.components(separatedBy: ":")
         guard components.count == 3 else {
