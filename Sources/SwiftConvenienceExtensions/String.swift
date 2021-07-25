@@ -234,9 +234,8 @@ public extension String {
         return String(extraction)
     }
     
-    func convertedCamelCase() -> String {
+    var titleCase: String {
         return self
-            .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "([A-Z])",
                                   with: " $1",
                                   options: .regularExpression,
@@ -244,14 +243,8 @@ public extension String {
             .capitalized
     }
 
-    func convertCamelToUpperCase() -> String {
-        return self
-            .replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "([A-Z])",
-                                  with: " $1",
-                                  options: .regularExpression,
-                                  range: range(of: self))
-            .uppercased()
+    var camelToUpperCase: String {
+        self.titleCase.uppercased()
     }
     
     func millisecondsFromHHMMSSZZZ() -> Int {
