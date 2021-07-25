@@ -235,11 +235,12 @@ public extension String {
     }
     
     var titleCase: String {
-        return self
+        let withoutSpaces = self.replacingOccurrences(of: " ", with: "")
+        return withoutSpaces
             .replacingOccurrences(of: "([A-Z])",
                                   with: " $1",
                                   options: .regularExpression,
-                                  range: range(of: self))
+                                  range: range(of: withoutSpaces))
             .capitalized
     }
 
