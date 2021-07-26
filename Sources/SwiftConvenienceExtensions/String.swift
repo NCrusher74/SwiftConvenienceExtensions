@@ -244,10 +244,6 @@ public extension String {
             return $0 + String($1)
         }
     }
-
-    func upperCased() -> String {
-        self.titleCased().uppercased()
-    }
     
     func millisecondsFromHHMMSSZZZ() -> Int {
         var components = self.components(separatedBy: ":")
