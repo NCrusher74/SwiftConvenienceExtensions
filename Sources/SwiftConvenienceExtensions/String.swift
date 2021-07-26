@@ -234,26 +234,19 @@ public extension String {
         return String(extraction)
     }
     
-    var condensed: String {
-        self.replacingOccurrences(of: " ", with: "")
-    }
-    
-    func titleCased(condensingWhiteSpaces: Bool = true) -> String {
-        var string = self
-        if condensingWhiteSpaces {
-            string =  self.condensed
+    func titleCased() -> String {
+        return unicodeScalars.reduce("") {
+            if CharacterSet.uppercaseLetters.contains($1) {
+                if $0.count > 0 {
+                    return ($0 + " " + String($1))
+                }
+            }
+            return $0 + String($1)
         }
-        
-        return string
-            .replacingOccurrences(of: "([A-Z])",
-                                  with: " $1",
-                                  options: .regularExpression,
-                                  range: range(of: self))
-            .capitalized
     }
 
-    func upperCased(condensingWhiteSpaces: Bool = true) -> String {
-        self.titleCased(condensingWhiteSpaces: condensingWhiteSpaces).uppercased()
+    func upperCased() -> String {
+        self.titleCased().uppercased()
     }
     
     func millisecondsFromHHMMSSZZZ() -> Int {
