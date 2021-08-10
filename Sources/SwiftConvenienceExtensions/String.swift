@@ -82,7 +82,8 @@ public extension String {
 
     /// Divides the string separated by a semicolon character (`"; "`) into a string array.
     var toArray: [String] {
-        return self.components(separatedBy: "; ")
+        let components = self.components(separatedBy: ";")
+        return components.map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
     }
 
     init(withInt int: Int, leadingZeros: Int = 2) {

@@ -15,12 +15,9 @@ public extension Array where Element == String {
     }
 
     mutating func extractFirst() -> String {
-        guard !self.isEmpty else {
-            return String()
-        }
-        let extraction = self.first!
+        let first = self[0]
         self = Array<String>(self.dropFirst())
-        return extraction
+        return first
     }
     
     mutating func millisecondsFromMMSSFF() -> Int {
